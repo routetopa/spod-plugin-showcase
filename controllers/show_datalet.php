@@ -14,14 +14,14 @@ class SPODSHOWCASE_CTRL_ShowDatalet extends OW_ActionController
         {
             $html_datalet = $this->create_datalet_code($datalet);
             $this->assign('html_datalet', $html_datalet);
-            $this->assign('static_image_url', OW_URL_HOME . 'ow_plugins/ode/datalet_images/' . $datalet_id . '.png');
+            $this->assign('static_image_url', OW_URL_HOME . 'ow_plugins/ode/datalet_images/datalet_' . $datalet_id . '.png');
 
             $this->assign('twitter_card', 'summary_large_image');
             $this->assign('twitter_site', '@RouteToPA');
             //$this->assign('twitter_creator', '');
             $this->assign('twitter_title', 'Titolo');
             $this->assign('twitter_description', 'Descrizione');
-            $this->assign('twitter_image', OW_URL_HOME . 'ow_plugins/ode/datalet_images/' . $datalet_id . '.png');
+            $this->assign('twitter_image', OW_URL_HOME . 'ow_plugins/ode/datalet_images/datalet_' . $datalet_id . '.png');
 
         }
     }
