@@ -15,19 +15,23 @@ class SPODSHOWCASE_CTRL_ShowDatalet extends OW_ActionController
             $document = OW::getDocument();
 
             $html_datalet = $this->create_datalet_code($datalet);
+            $datalet_para = json_decode($datalet->params);
+
             $this->assign('html_datalet', $html_datalet);
+
+            $ode_dir = OW::getPluginManager()->getPlugin('ode')->getDirName();
 
             $document->addMetaInfo("twitter:card", 'summary_large_image');
             $document->addMetaInfo("twitter:site", '@RouteToPA');
-            $document->addMetaInfo("twitter:title", 'Titolo');
-            $document->addMetaInfo("twitter:description", 'Descrizione');
-            $document->addMetaInfo("twitter:image", OW_URL_HOME . 'ow_plugins/ode/datalet_images/datalet_' . $datalet_id . '.png');
+            $document->addMetaInfo("twitter:title", isset($datalet_para->datalettitle) ? $datalet_para->datalettitle : '');
+            $document->addMetaInfo("twitter:description", isset($datalet_para->description) ? $datalet_para->description : '');
+            $document->addMetaInfo("twitter:image", OW_URL_HOME . 'ow_plugins/' . $ode_dir . '/datalet_images/datalet_' . $datalet_id . '.png');
 
             $document->addMetaInfo("og:url", OW::getRouter()->urlForRoute('spodshowcase.datalet', array("datalet_id" => $datalet_id)));
             $document->addMetaInfo("og:type", 'article');
-            $document->addMetaInfo("og:title", 'Titolo');
-            $document->addMetaInfo("og:description", 'Descrizione');
-            $document->addMetaInfo("og:image", OW_URL_HOME . 'ow_plugins/ode/datalet_images/datalet_' . $datalet_id . '.png');
+            $document->addMetaInfo("og:title", isset($datalet_para->datalettitle) ? $datalet_para->datalettitle : '');
+            $document->addMetaInfo("og:description", isset($datalet_para->description) ? $datalet_para->description : '');
+            $document->addMetaInfo("og:image", OW_URL_HOME . 'ow_plugins/' . $ode_dir . '/datalet_images/datalet_' . $datalet_id . '.png');
         }
     }
 
