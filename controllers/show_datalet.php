@@ -12,20 +12,22 @@ class SPODSHOWCASE_CTRL_ShowDatalet extends OW_ActionController
 
         if(!empty($datalet))
         {
+            $document = OW::getDocument();
+
             $html_datalet = $this->create_datalet_code($datalet);
             $this->assign('html_datalet', $html_datalet);
 
-            $this->assign('twitter_card', 'summary_large_image');
-            $this->assign('twitter_site', '@RouteToPA');
-            $this->assign('twitter_title', 'Titolo');
-            $this->assign('twitter_description', 'Descrizione');
-            $this->assign('twitter_image', OW_URL_HOME . 'ow_plugins/ode/datalet_images/datalet_' . $datalet_id . '.png');
+            $document->addMetaInfo("twitter:card", 'summary_large_image');
+            $document->addMetaInfo("twitter:site", '@RouteToPA');
+            $document->addMetaInfo("twitter:title", 'Titolo');
+            $document->addMetaInfo("twitter:description", 'Descrizione');
+            $document->addMetaInfo("twitter:image", OW_URL_HOME . 'ow_plugins/ode/datalet_images/datalet_' . $datalet_id . '.png');
 
-            $this->assign('facebook_url', OW::getRouter()->urlForRoute('spodshowcase.datalet', array("datalet_id" => $datalet_id)));
-            $this->assign('facebook_title', 'Titolo');
-            $this->assign('facebook_description', 'Descrizione');
-            $this->assign('facebook_image', OW_URL_HOME . 'ow_plugins/ode/datalet_images/datalet_' . $datalet_id . '.png');
-
+            $document->addMetaInfo("og:url", OW::getRouter()->urlForRoute('spodshowcase.datalet', array("datalet_id" => $datalet_id)));
+            $document->addMetaInfo("og:type", 'article');
+            $document->addMetaInfo("og:title", 'Titolo');
+            $document->addMetaInfo("og:description", 'Descrizione');
+            $document->addMetaInfo("og:image", OW_URL_HOME . 'ow_plugins/ode/datalet_images/datalet_' . $datalet_id . '.png');
         }
     }
 
