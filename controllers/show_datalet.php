@@ -29,8 +29,8 @@ class SPODSHOWCASE_CTRL_ShowDatalet extends OW_ActionController
 
             $document->addMetaInfo("og:url", OW::getRouter()->urlForRoute('spodshowcase.datalet', array("datalet_id" => $datalet_id)));
             $document->addMetaInfo("og:type", 'article');
-            $document->addMetaInfo("og:title", isset($datalet_para->datalettitle) ? $datalet_para->datalettitle : '');
-            $document->addMetaInfo("og:description", isset($datalet_para->description) ? $datalet_para->description : '');
+            $document->addMetaInfo("og:title", isset($datalet_para->datalettitle) ? $datalet_para->datalettitle : 'No title');
+            $document->addMetaInfo("og:description", isset($datalet_para->description) ? $datalet_para->description : 'No description');
             $document->addMetaInfo("og:image", OW_URL_HOME . 'ow_plugins/' . $ode_dir . '/datalet_images/datalet_' . $datalet_id . '.png');
         }
     }
