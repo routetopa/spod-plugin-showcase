@@ -32,6 +32,9 @@ class SPODSHOWCASE_CTRL_ShowDatalet extends OW_ActionController
             $document->addMetaInfo("og:title", isset($datalet_para->datalettitle) ? $datalet_para->datalettitle : 'No title', "property" );
             $document->addMetaInfo("og:description", isset($datalet_para->description) ? $datalet_para->description : 'No description', "property");
             $document->addMetaInfo("og:image", OW_URL_HOME . 'ow_plugins/' . $ode_dir . '/datalet_images/datalet_' . $datalet_id . '.png', "property");
+            $document->addMetaInfo("og:image:width", "948", "property" );
+            $document->addMetaInfo("og:image:height", "490", "property" );
+
         }
     }
 
