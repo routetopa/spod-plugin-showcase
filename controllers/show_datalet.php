@@ -23,8 +23,8 @@ class SPODSHOWCASE_CTRL_ShowDatalet extends OW_ActionController
 
             $document->addMetaInfo("twitter:card", 'summary_large_image');
             $document->addMetaInfo("twitter:site", '@RouteToPA');
-            $document->addMetaInfo("twitter:title", isset($datalet_para->datalettitle) ? $datalet_para->datalettitle : '');
-            $document->addMetaInfo("twitter:description", isset($datalet_para->description) ? $datalet_para->description : '');
+            $document->addMetaInfo("twitter:title", isset($datalet_para->datalettitle) ? $datalet_para->datalettitle : 'No title');
+            $document->addMetaInfo("twitter:description", isset($datalet_para->description) ? $datalet_para->description : 'No description');
             $document->addMetaInfo("twitter:image", OW_URL_HOME . 'ow_plugins/' . $ode_dir . '/datalet_images/datalet_' . $datalet_id . '.png');
 
             $document->addMetaInfo("og:url", OW::getRouter()->urlForRoute('spodshowcase.datalet', array("datalet_id" => $datalet_id)));
