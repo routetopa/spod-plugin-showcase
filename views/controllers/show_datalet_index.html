@@ -1,3 +1,258 @@
-{$html_datalet}
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script type="text/javascript">
+
+    $( document ).ready(function() {
+
+        console.log( "ready!" );
+
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+
+        var s = skrollr.init({
+            forceHeight:true
+        });
+
+
+        $("#dragme").draggable({
+            containment: "parent",
+            axis: "x",
+            drag: function( event, ui ) {
+                $("#sx_view").width(ui.position.left);
+            }
+        });
+
+        $(".nav").on('click', function (e) {
+
+            $(".nav").removeClass('selected');
+            $(e.currentTarget).addClass('selected');
+
+            let page_one = function () {
+                $('html, body').animate({
+                    scrollTop: 0
+                }, 1000);
+            };
+
+            let page_two = function ()
+            {
+                $('html, body').animate({
+                    scrollTop: $(window).height()
+                }, 1000);
+
+                let width = (0.50*$('#sx_view').parent().width());
+
+                $("#sx_view").animate({
+                    width : width
+                }, 1800);
+
+                $("#dragme").animate({
+                    left : '50%'
+                }, 1800);
+
+            };
+
+            let page_three = function () {
+                $('html, body').animate({
+                    scrollTop: $(window).height()*2
+                }, 1000);
+            };
+
+            switch (e.currentTarget.getAttribute('nav-menu'))
+            {
+                case "1" : console.log("1"); page_one(); break;
+                case "2" : console.log("2"); page_two(); break;
+                case "3" : console.log("3"); page_three(); break;
+            }
+
+        });
+
+    });
+
+</script>
+
+<style>
+
+    html {
+        overflow: -moz-scrollbars-none;
+    }
+
+    ::-webkit-scrollbar {
+        display: none;
+    }
+
+    .selected:before
+    {
+        content: '';
+        position: absolute;
+        left: 4px;
+        top: 4px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #FFFFFF;
+    }
+
+</style>
+
+
+    <img src="https://sitetour.io/assets/images/st-logo-white.png" height="40" style="position:fixed; top: 4px; left: 4px; z-index: 10">
+
+
+    <div style="position: fixed; right: 0px; height: 100vh; width: 48px; z-index: 100">
+        <div style="display: flex; justify-content: center; align-items: center; flex-direction:column; height: 100%">
+            <div nav-menu="1" class="nav selected" style="cursor:pointer; background-color: transparent; border-radius: 50%; width: 20px; height: 20px; margin: 6px; border: 2px solid #ffffff; position: relative"></div>
+            <div nav-menu="2" class="nav" style="cursor:pointer; background-color: transparent; border-radius: 50%; width: 20px; height: 20px; margin: 6px; border: 2px solid #ffffff; position: relative"></div>
+            <div nav-menu="3" class="nav" style="cursor:pointer; background-color: transparent; border-radius: 50%; width: 20px; height: 20px; margin: 6px; border: 2px solid #ffffff; position: relative"></div>
+        </div>
+    </div>
+
+    <div class="agora_left_comment" id=""
+         style='
+         height: 100vh;
+         background-image: url("https://www.techforjustice.org/wp-content/uploads/2015/10/light-graph-background-gradient.jpg");
+         position: relative;
+         opacity: 1;
+         background-attachment: fixed;
+         background-position: center;
+         background-repeat: no-repeat;
+         background-size: cover;'
+    >
+
+        <div style='width: 100%;
+                height: 48px;
+                background-color: #2196F3;
+                position: absolute'>
+
+        </div>
+
+        <div style="margin: 24px auto; display: flex">
+
+            <div class="ow_avatar style-scope neutral" title="UTENTE">
+                <a class="style-scope" href="http://192.168.137.128/user/spodadmin">
+                    <img src="http://192.168.137.128/ow_userfiles/plugins/base/avatars/avatar_1_1457965950.jpg">
+                </a>
+            </div>
+            <div class="agora_speech">
+                <div class="agora_speech_text"></div>
+                <div id="" class="agora_fullsize_datalet scatterchart-datalet" datalet-id="">
+                    {$html_datalet}
+                </div>
+                <div class="agora_speech_info">
+                    <div class="agora_speech_username">USERNAME</div>
+                    <div class="agora_speech_time">17:12 06/17</div>
+                </div>
+                <div class="context">Questo scatterplot-datalet è stato creato da <a href="">Andrea</a> nell'agora "Il coso del coso del cos" a partire da questo <a href="#">dataset</a>
+                                     La stanza ha 100 views 20 commenti e 5 datalet
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+<div style="display: flex; flex-direction: row; position: relative; height: 100vh; width: 100%; overflow: hidden;">
+
+    <div id="sx_view" class="sx_view" style="height: 100%; width: 0%; overflow: hidden; position: absolute; z-index: 2">
+        <div style="height: 100%; width:100vw; position: relative; background-color: #f2f0f1; display: flex; justify-content: center; align-items: center;">
+<!--            <div class="cube" style="
+                    background-color: blue;
+                    width: 100px;
+                    height: 100px;
+                    position: absolute;
+                    left: 0;
+                    margin: 0 auto;
+                    margin-top: -50px;
+                    top: 50%;"
+                 data-0="transform:translate(0%,0%)" data-500="transform:translate(200px,0%)"
+            ></div>-->
+            <div style="
+                          width: 973px;
+                          height: 650px;
+                          position: absolute;
+                          right: 0; left:0;
+                          margin: 0 auto;
+                         " >
+                <img src="/ow_static/plugins/showcase/images/visual.jpg" style="vertical-align: middle">
+            </div>
+
+            <div style="
+                        position: absolute;
+                        right: 20px;
+                        top: 20px;
+                    ">Listen to all this stories ... </div>
+
+        </div>
+    </div>
+
+    <div class="dx_view" style="height: 100%; width: 100%; overflow: hidden; position: absolute; ; z-index: 1">
+        <div style="height: 100%;
+                    width:100vw;
+                    position: relative;
+                    background-color: #f2f0f1;
+                    display: flex;
+                    justify-content:center; align-items: center;
+                    background: url('/ow_static/plugins/showcase/images/bck.jpg')">
+            <!--<div class="cube" style="
+                    background-color: #0c0c0c;
+                    width: 100px;
+                    height: 100px;
+                    position: absolute;
+                    right: 0;
+                    margin: 0 auto;
+                    margin-top: -50px;
+                    top: 50%;"
+                 data-0="transform:translate(0%,0%)" data-800="transform:translate(-750px,0%)"
+            ></div>-->
+            <div style="
+                          height: 650px;
+                          width: 973px;
+                          position: absolute;
+                          right: 0; left:0;
+                          margin: 0 auto;
+                         ">
+                <img src="/ow_static/plugins/showcase/images/data.png" style="vertical-align: middle">
+            </div>
+
+            <div style="
+                        position: absolute;
+                        right: 20px;
+                        top: 20px;
+                    ">Datas hides stories ... </div>
+
+        </div>
+    </div>
+
+    <div id="dragme" style="
+                            position: absolute;
+                            width: 2px;
+                            height: 100%;
+                            top: 0px;
+                            /*left: 50%;*/
+                            background-color: #b0e4f3;
+                            cursor: pointer;
+                            z-index: 3;"
+                            data-0="left:0" data-800="left:50%"
+    >
+        <span style="
+                    width: 30px;
+                    height: 30px;
+                    background: url(https://static.enginethemes.com/main/img/drag-icon.png) no-repeat center center;
+                    display: block;
+                    position: absolute;
+                    top: 50%;
+                    left: -15px;
+                    margin-top: -84px;"></span>
+    </div>
+
+
+</div>
+
+<div style="height: 100vh">
+
+</div>
+
 
 

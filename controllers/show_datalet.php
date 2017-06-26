@@ -4,7 +4,7 @@ class SPODSHOWCASE_CTRL_ShowDatalet extends OW_ActionController
 {
     public function index(array $params)
     {
-        //OW::getDocument()->getMasterPage()->setTemplate(OW::getPluginManager()->getPlugin('spodshowcase')->getRootDir() . 'master_pages/empty.html');
+        OW::getDocument()->getMasterPage()->setTemplate(OW::getPluginManager()->getPlugin('spodshowcase')->getRootDir() . 'master_pages/empty.html');
 
         $datalet_id = $params['datalet_id'];
 
@@ -14,10 +14,14 @@ class SPODSHOWCASE_CTRL_ShowDatalet extends OW_ActionController
         {
             $document = OW::getDocument();
 
+            OW::getDocument()->addStyleSheet(OW::getPluginManager()->getPlugin('spodshowcase')->getStaticCssUrl() . 'showcase.css');
+            OW::getDocument()->addScript(OW::getPluginManager()->getPlugin('spodshowcase')->getStaticJsUrl() . 'skrollr.js');
+
             $html_datalet = $this->create_datalet_code($datalet);
             $datalet_para = json_decode($datalet->params);
 
             $this->assign('html_datalet', $html_datalet);
+            $this->assign('context', SPODSHOWCASE_BOL_Service::getInstance()->gat_datalet_context($datalet_id));
 
             $ode_dir = OW::getPluginManager()->getPlugin('ode')->getDirName();
 
