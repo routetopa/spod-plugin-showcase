@@ -1,0 +1,273 @@
+html
+{
+    overflow: -moz-scrollbars-none;
+}
+
+body
+{
+    overflow: hidden;
+}
+
+.site_tour
+{
+    background: url('../images/st-logo-white.png') no-repeat center;
+    background-size: contain;
+    width: 71px;
+    height: 40px;
+    position:fixed;
+    top: 4px;
+    left: 4px;
+    z-index: 10
+}
+
+.page_navigator
+{
+    position: fixed;
+    right: 0px;
+    height: 100vh;
+    width: 48px;
+    z-index: 100;
+}
+
+.page_navigator_container
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction:column;
+    height: 100%;
+}
+
+.page_navigator_container div
+{
+    cursor:pointer;
+    background-color: transparent;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    margin: 6px;
+    border: 2px solid #ffffff;
+    position: relative;
+}
+
+.selected:before
+{
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 4px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #FFFFFF;
+}
+
+.page_one
+{
+    position: relative;
+    height: 100vh;
+    background: url("../images/light-graph-background-gradient.jpg") center no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.header_bar
+{
+    width: 100%;
+    height: 48px;
+    background-color: #2196F3;
+    position: absolute
+}
+
+#page_two
+{
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+#sx_view
+{
+    height: 100%;
+    width: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: 2;
+}
+
+.sx_container
+{
+    height: 100%;
+    width:100vw;
+    position: relative;
+    background-color: #f2f0f1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#dx_view
+{
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    position: absolute;
+    z-index: 1;
+}
+
+.dx_container
+{
+    height: 100%;
+    width:100vw;
+    position: relative;
+    background-color: #f2f0f1;
+    display: flex;
+    justify-content:center; align-items: center;
+    background: url('../images/bck.jpg')
+}
+
+.comparator_image_container
+{
+    width: 973px;
+    height: 650px;
+    position: absolute;
+    right: 0;
+    left:0;
+    margin: 0 auto;
+}
+
+#dragme
+{
+    position: absolute;
+    width: 2px;
+    height: 100%;
+    top: 0px;
+    background-color: #b0e4f3;
+    cursor: pointer;
+    z-index: 3;
+}
+
+#dragme span:before
+{
+    content: '';
+    position: absolute;
+    left: -10px;
+    top: -10px;
+    width: 45px;
+    height: 45px;
+    border: 2px solid #eb5256;
+    border-radius: 50%;
+    transform: scale(0.6);
+    transform-origin: center center;
+    animation-name: loopwidth;
+    animation-duration: 1.5s;
+    animation-timing-function: ease-in;
+    animation-iteration-count:infinite;
+}
+
+/*@keyframes loopwidth {
+    from   { transform: scale(0.6); }
+    to { transform: scale(1); }
+}*/
+
+@keyframes loopwidth {
+    0%   { transform: scale(0.6); }
+    /*25%  { transform: scale(0.8); }*/
+    50% { transform: scale(1); }
+    /*75% { transform: scale(0.8); }*/
+    100% { transform: scale(0.6); }
+}
+
+/*@keyframes loopwidth {
+    from { width: 0; }
+    to  { width: 50px; }
+}*/
+
+
+#dragme span
+{
+    width: 30px;
+    height: 30px;
+    background: url('../images/drag-icon.png') no-repeat center center;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: -15px;
+    margin-top: -84px;
+}
+
+#page_three
+{
+    height: 100vh;
+    background-image: url("../images/the-earth-isnt-flat-phlogiston-doesnt-exist-small.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#div1 div {
+    position:absolute;
+}
+
+#div1
+{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    display: flex; justify-content: center; align-items: center;
+}
+
+#div2
+{
+    height: 458px;
+    width: 300px;
+    transform: rotateX(45deg) rotateZ(-45deg) translateX(210px) translateY(235px);
+}
+
+
+#div3:before, #div2:before, #div4:before{
+    content: '';
+    position: absolute;
+    left: -4px;
+    top: 4px;
+    width: 298px;
+    height: 401px;
+    background: #c9c9c9;
+}
+
+#div3
+{
+    height: 458px;
+    width: 300px;
+    transform: rotateX(45deg) rotateZ(-45deg) translateX(-120px) translateY(235px);
+}
+
+#div4
+{
+    height: 458px;
+    width: 300px;
+    transform: rotateX(45deg) rotateZ(-45deg) translateX(30px) translateY(-205px);
+}
+
+#base_datalet_container
+{
+    display: none;
+}
+
+#div3 .leaflet-control-container
+{
+    display: none;
+}
+
+.floating_text
+{
+    font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 900;
+    color: #2196f3;
+}

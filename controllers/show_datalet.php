@@ -15,7 +15,8 @@ class SPODSHOWCASE_CTRL_ShowDatalet extends OW_ActionController
             $document = OW::getDocument();
 
             OW::getDocument()->addStyleSheet(OW::getPluginManager()->getPlugin('spodshowcase')->getStaticCssUrl() . 'showcase.css');
-            OW::getDocument()->addScript(OW::getPluginManager()->getPlugin('spodshowcase')->getStaticJsUrl() . 'skrollr.js');
+            OW::getDocument()->addStyleSheet(OW::getPluginManager()->getPlugin('spodshowcase')->getStaticCssUrl() . 'showcase_page.css');
+            //OW::getDocument()->addScript(OW::getPluginManager()->getPlugin('spodshowcase')->getStaticJsUrl() . 'skrollr.js');
 
             $html_datalet = $this->create_datalet_code($datalet);
             $datalet_para = json_decode($datalet->params);
