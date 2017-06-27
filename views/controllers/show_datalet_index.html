@@ -138,29 +138,32 @@
     }
 
     #div2 {
-        height: 540px;
+        height: 458px;
         width: 300px;
         transform: rotateX(45deg) rotateZ(-45deg) translateX(210px) translateY(235px);
     }
 
-    #div3 {
-        height: 540px;
-        width: 300px;
-        transform: rotateX(45deg) rotateZ(-45deg) translateX(-120px) translateY(235px);
+
+    #div3:before, #div2:before, #div4:before{
+        content: '';
+        position: absolute;
+        left: -4px;
+        top: 4px;
+        width: 298px;
+        height: 401px;
+        background: #c9c9c9;
     }
 
-    #div3:before {
-        content: '';
-        background-color: white;
-        height: 540px;
+    #div3 {
+        height: 458px;
         width: 300px;
         transform: rotateX(45deg) rotateZ(-45deg) translateX(-120px) translateY(235px);
     }
 
     #div4 {
-        height: 540px;
+        height: 458px;
         width: 300px;
-        transform: rotateX(45deg) rotateZ(-45deg) translateX(30px) translateY(-253px);
+        transform: rotateX(45deg) rotateZ(-45deg) translateX(30px) translateY(-205px);
     }
 
     #base_datalet_container {
