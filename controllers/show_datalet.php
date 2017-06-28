@@ -12,6 +12,8 @@ class SPODSHOWCASE_CTRL_ShowDatalet extends OW_ActionController
 
         if(!empty($datalet))
         {
+            $avatars = SPODAGORA_CLASS_Tools::getInstance()->process_avatar(BOL_AvatarService::getInstance()->getDataForUserAvatars(array($datalet->ownerId)));
+
             $document = OW::getDocument();
 
             OW::getDocument()->addStyleSheet(OW::getPluginManager()->getPlugin('spodshowcase')->getStaticCssUrl() . 'showcase.css');
@@ -20,9 +22,16 @@ class SPODSHOWCASE_CTRL_ShowDatalet extends OW_ActionController
 
             $html_datalet = $this->create_datalet_code($datalet);
             $datalet_para = json_decode($datalet->params);
+            $context = SPODSHOWCASE_BOL_Service::getInstance()->gat_datalet_context($datalet_id);
 
             $this->assign('html_datalet', $html_datalet);
-            $this->assign('context', SPODSHOWCASE_BOL_Service::getInstance()->gat_datalet_context($datalet_id));
+            $this->assign('context', $context);
+            $this->assign('datalet', $datalet);
+            $this->assign('dataset', $datalet_para->{'data-url'});
+            $this->assign('avatar', $avatars[$datalet->ownerId]);
+
+            // ADD DATALET DEFINITIONS
+            $this->assign('datalet_definition_import', ODE_CLASS_Tools::getInstance()->get_all_datalet_definitions());
 
             $ode_dir = OW::getPluginManager()->getPlugin('ode')->getDirName();
 
@@ -39,6 +48,8 @@ class SPODSHOWCASE_CTRL_ShowDatalet extends OW_ActionController
             $document->addMetaInfo("og:image", OW_URL_HOME . 'ow_plugins/' . $ode_dir . '/datalet_images/datalet_' . $datalet_id . '.png', "property");
             $document->addMetaInfo("og:image:width", "948", "property" );
             $document->addMetaInfo("og:image:height", "490", "property" );
+        }else {
+            throw new Redirect404Exception();
         }
     }
 

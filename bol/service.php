@@ -34,20 +34,25 @@ class SPODSHOWCASE_BOL_Service
         $ex = new OW_Example();
         $ex->andFieldEqual('dataletId', $dataletId);
         $datalet_post = ODE_BOL_DataletPostDao::getInstance()->findObjectByExample($ex);
+        $context = '';
+        $query = '';
 
         switch($datalet_post->plugin)
         {
             case "agora" :
                 $context = "agora";
                 $query = "SELECT * from ow_spod_agora_room_comment JOIN ow_spod_agora_room ON ow_spod_agora_room_comment.entityId = ow_spod_agora_room.id where ow_spod_agora_room_comment.id = {$datalet_post->postId};";
+                $res = $dbo->queryForRow($query);
                 break;
             case "newsfeed" :
-                $context = "agora";
-                $query = "";
+                $context = "newsfeed";
+                //$query = "";
                 break;
         }
 
-        return array($context => $dbo->queryForRow($query));
+        $res["context"] = $context;
+
+        return $res;
     }
 
 }

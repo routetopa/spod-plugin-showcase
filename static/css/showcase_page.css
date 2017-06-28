@@ -76,7 +76,7 @@ body
     width: 100%;
     height: 48px;
     background-color: #2196F3;
-    position: absolute
+    position: absolute;
 }
 
 #page_two
@@ -201,6 +201,7 @@ body
 
 #page_three
 {
+    position: relative;
     height: 100vh;
     background-image: url("../images/the-earth-isnt-flat-phlogiston-doesnt-exist-small.jpg");
     background-attachment: fixed;
@@ -265,9 +266,52 @@ body
 
 .floating_text
 {
+    position: absolute;
     font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 20px;
     line-height: 24px;
     font-weight: 900;
     color: #2196f3;
+}
+
+.speech_balloon:before
+{
+    content: ' ';
+    position: absolute;
+    width: 0;
+    height: 0;
+    left: -16px;
+    top: 0;
+    border: 8px solid;
+    border-color: #BBDEFB #BBDEFB transparent transparent;
+}
+
+.speech_balloon
+{
+    background-color: #BBDEFB;
+    border-radius: 0 5px 5px 5px;
+    margin-left: 16px;
+    margin-top: 8px;
+    padding: 12px 16px;
+}
+
+.speech_balloon_reverse:before
+{
+    content: ' ';
+    position: absolute;
+    width: 0;
+    height: 0;
+    right: -16px;
+    top: 0;
+    border: 8px solid;
+    border-color: #BBDEFB  transparent transparent #BBDEFB;
+}
+
+.speech_balloon_reverse
+{
+    background-color: #BBDEFB;
+    border-radius: 5px 0 5px 5px;
+    margin-left: 16px;
+    margin-top: 8px;
+    padding: 12px 16px;
 }
