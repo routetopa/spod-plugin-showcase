@@ -41,6 +41,7 @@ class SPODSHOWCASE_CTRL_ShowDatalet extends OW_ActionController
             $document->addMetaInfo("twitter:description", isset($datalet_para->description) ? $datalet_para->description : 'No description');
             $document->addMetaInfo("twitter:image", OW_URL_HOME . 'ow_plugins/' . $ode_dir . '/datalet_images/datalet_' . $datalet_id . '.png');
 
+            $document->addMetaInfo("fb:app_id", "113151409308739", "property");
             $document->addMetaInfo("og:url", OW::getRouter()->urlForRoute('spodshowcase.datalet', array("datalet_id" => $datalet_id)), "property");
             $document->addMetaInfo("og:type", 'article', "property");
             $document->addMetaInfo("og:title", isset($datalet_para->datalettitle) ? $datalet_para->datalettitle : 'No title', "property" );
