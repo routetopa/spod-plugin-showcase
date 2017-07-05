@@ -4,6 +4,12 @@
 
 <script type="text/javascript">
 
+    var page = 0;
+
+    $( window ).on('resize', function(){
+        $(window).scrollTop($(window).height()*page);
+    });
+
     $( document ).ready(function() {
 
         if ('scrollRestoration' in history) {
@@ -31,6 +37,8 @@
                 $('html, body').animate({
                     scrollTop: 0
                 }, 1000);
+
+                page = 0;
             };
 
             let page_two = function ()
@@ -52,12 +60,16 @@
                     left : '50%'
                 }, 2500);
 
+                page = 1;
+
             };
 
             let page_three = function () {
                 $('html, body').animate({
                     scrollTop: $(window).height()*2
                 }, 1000);
+
+                page = 2;
             };
 
             switch (e.currentTarget.getAttribute('nav-menu'))
