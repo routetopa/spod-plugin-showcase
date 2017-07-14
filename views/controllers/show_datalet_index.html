@@ -112,14 +112,15 @@
 
 <div class="page_one agora_left_comment">
     <div class="header_bar"></div>
-    <div style="margin: 24px auto; display: flex">
+
+    <div class="datalet_container">
         <div class="ow_avatar style-scope neutral" title='{$avatar["title"]}'>
             <a class="style-scope" href='{$avatar["url"]}'>
                 <img src='{$avatar["src"]}'>
             </a>
         </div>
         <div class="agora_speech">
-            <div class="agora_speech_text"></div>
+            <div class="agora_speech_text" style="background: url({$ur_share_img}) no-repeat"></div>
             <div id="" class="agora_fullsize_datalet scatterchart-datalet" datalet-id="">
                 {$html_datalet}
             </div>
@@ -128,14 +129,42 @@
                 <div class="agora_speech_time">{$datalet->timestamp}</div>
             </div>
             {if $context["context"] == "agora"}
-            <div class="context">This {$datalet->component} was created by <a href="{$avatar["url"]}">{$avatar["title"]}</a> in the {$context["context"]} <a href='/agora/{$context["id"]}'>{$context["subject"]}</a> from this <a href="{$dataset}" target="_blank">dataset</a>
-                                 <br/><br/><a href='/agora/{$context["id"]}'>{$context["subject"]}</a> room has {$context["views"]} views {$context["comments"]} comments and {$context["opendata"]} datalet
-            </div>
+            <p class="context">
+                {text key="spodshowcase+datalet_from_agora_message"
+                    component={$datalet->component}
+                    user_url={$avatar["url"]}
+                    user_title={$avatar["title"]}
+                    context={$context["context"]}
+                    context_id={$context["id"]}
+                    context_subject={$context["subject"]}
+                    dataset={$dataset}
+                    context_views={$context["views"]}
+                    context_comments={$context["comments"]}
+                    context_opendata={$context["opendata"]}
+                }
+            </p>
             {/if}
             {if $context["context"] == "newsfeed"}
-            <div class="context">This {$datalet->component} was created by <a href="{$avatar["url"]}">{$avatar["title"]}</a> in his {$context["context"]}
-            </div>
+            <p class="context">
+                {text key="spodshowcase+datalet_from_newsfeed_message"
+                component={$datalet->component}
+                user_url={$avatar["url"]}
+                user_title={$avatar["title"]}
+                context={$context["context"]}
+                dataset={$dataset}
+                }
+            </p>
             {/if}
+
+            <p class="project_info">
+                {text key="spodshowcase+project_info"}
+            </p>
+
+            <div class="project_grant" style="position: absolute; bottom: 0; padding-bottom: 20px;">
+                <img src="{$staticResourcesUrl}/images/EU-Flag.jpg" />
+                <p style="float: right; width: calc(100% - 136px); padding: 8px;">{text key="spodshowcase+project_grant"}</p>
+            </div>
+
         </div>
     </div>
 </div>
@@ -150,19 +179,19 @@
             </div>
 
             <div class="floating_text" style="left: 5%; top: 25%; width: 445px">
-                SPOD will help you discover beauty <i>behind</i> data! <span style="color: #d74d0c">drag to discover how</span>
+                {text key="spodshowcase+page_two_message_1"}
             </div>
 
             <div class="floating_text speech_balloon" style="left: 69%;top: 16%;width: 325px;">
-                Data are closer than you think, SPOD will suggest the more interesting ones
+                {text key="spodshowcase+page_two_message_2"}
             </div>
 
             <div class="floating_text speech_balloon" style="left: 53%;top: 40%;width: 300px;">
-                Data visualization are hard ? With SPOD no more ... <i>try our wizard !</i>
+                {text key="spodshowcase+page_two_message_3"}
             </div>
 
             <div class="floating_text speech_balloon" style="left: 61%;top: 68%;width: 400px;">
-                <i>Dicuss</i> with data, <span style="color: #d74d0c">SPOD connect citizens and public administration</span>
+                {text key="spodshowcase+page_two_message_4"}
             </div>
 
         </div>
@@ -189,7 +218,7 @@
 <div id="page_three">
 
     <div class="floating_text speech_balloon_reverse" style="left: 5%; top: 49%; width: 400px;">
-        SPOD has lot of interactive data visualization tools, <i>join</i> to discover
+        {text key="spodshowcase+page_three_message_1"}
     </div>
 
     <div style="" id="div1">
@@ -209,4 +238,5 @@
             {/literal}
         </div>
     </div>
+
 </div>

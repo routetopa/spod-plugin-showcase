@@ -29,26 +29,34 @@ class SPODSHOWCASE_CTRL_ShowDatalet extends OW_ActionController
             $this->assign('datalet', $datalet);
             $this->assign('dataset', $datalet_para->{'data-url'});
             $this->assign('avatar', $avatars[$datalet->ownerId]);
+            $this->assign("staticResourcesUrl", OW::getPluginManager()->getPlugin('spodshowcase')->getStaticUrl());
 
             // ADD DATALET DEFINITIONS
             $this->assign('datalet_definition_import', ODE_CLASS_Tools::getInstance()->get_all_datalet_definitions());
 
             $ode_dir = OW::getPluginManager()->getPlugin('ode')->getDirName();
+            $url_img = OW_URL_HOME . 'ow_plugins/' . $ode_dir . '/datalet_images/datalet_' . $datalet_id . '.png';
+            $this->assign('ur_share_img', $url_img);
+
+            $preference = BOL_PreferenceService::getInstance()->findPreference('fb_app_id');
+            $fb_app_id_pref = empty($preference) ? "0000000" : $preference->defaultValue;
 
             $document->addMetaInfo("twitter:card", 'summary_large_image');
             $document->addMetaInfo("twitter:site", '@RouteToPA');
             $document->addMetaInfo("twitter:title", isset($datalet_para->datalettitle) ? $datalet_para->datalettitle : 'No title');
             $document->addMetaInfo("twitter:description", isset($datalet_para->description) ? $datalet_para->description : 'No description');
-            $document->addMetaInfo("twitter:image", OW_URL_HOME . 'ow_plugins/' . $ode_dir . '/datalet_images/datalet_' . $datalet_id . '.png');
+            $document->addMetaInfo("twitter:image", $url_img);
 
-            $document->addMetaInfo("fb:app_id", "113151409308739", "property");
-            $document->addMetaInfo("og:url", OW::getRouter()->urlForRoute('spodshowcase.datalet', array("datalet_id" => $datalet_id)), "property");
+            $redirect_uri = OW::getRouter()->urlForRoute('spodshowcase.datalet', array("datalet_id" => $datalet_id));
+            $document->addMetaInfo("fb:app_id", $fb_app_id_pref, "property");
+            $document->addMetaInfo("og:url", $redirect_uri, "property");
             $document->addMetaInfo("og:type", 'article', "property");
             $document->addMetaInfo("og:title", isset($datalet_para->datalettitle) ? $datalet_para->datalettitle : 'No title', "property" );
             $document->addMetaInfo("og:description", isset($datalet_para->description) ? $datalet_para->description : 'No description', "property");
-            $document->addMetaInfo("og:image", OW_URL_HOME . 'ow_plugins/' . $ode_dir . '/datalet_images/datalet_' . $datalet_id . '.png', "property");
+            $document->addMetaInfo("og:image", $url_img, "property");
             $document->addMetaInfo("og:image:width", "948", "property" );
             $document->addMetaInfo("og:image:height", "490", "property" );
+
         }else {
             throw new Redirect404Exception();
         }

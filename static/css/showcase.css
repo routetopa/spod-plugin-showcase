@@ -535,7 +535,7 @@ input#agora_search_input:focus {
 
 .agora_left_comment div.agora_speech {
     position: relative;
-    /*max-width: calc(100% - 56px - 16px - 56px - 16px - 32px);*/
+    width: calc( 75vw - 124px - 208px );
     background-color: #EEEEEE;
     border-radius: 0 5px 5px 5px;
     margin-left: 16px;
