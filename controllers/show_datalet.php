@@ -41,18 +41,24 @@ class SPODSHOWCASE_CTRL_ShowDatalet extends OW_ActionController
             $preference = BOL_PreferenceService::getInstance()->findPreference('fb_app_id');
             $fb_app_id_pref = empty($preference) ? "0000000" : $preference->defaultValue;
 
+            $domain_parse = parse_url($datalet_para->{'data-url'});
+
             $document->addMetaInfo("twitter:card", 'summary_large_image');
             $document->addMetaInfo("twitter:site", '@RouteToPA');
-            $document->addMetaInfo("twitter:title", isset($datalet_para->datalettitle) ? $datalet_para->datalettitle : 'No title');
-            $document->addMetaInfo("twitter:description", isset($datalet_para->description) ? $datalet_para->description : 'No description');
+            //$document->addMetaInfo("twitter:title", isset($datalet_para->datalettitle) ? $datalet_para->datalettitle : 'No title');
+            $document->addMetaInfo("twitter:title", isset($datalet_para->datalettitle) ? $datalet_para->datalettitle : $datalet->component);
+            //$document->addMetaInfo("twitter:description", isset($datalet_para->description) ? $datalet_para->description : 'No description');
+            $document->addMetaInfo("twitter:description", isset($datalet_para->description) ? $datalet_para->description : 'A visualization from ' . $domain_parse['host']);
             $document->addMetaInfo("twitter:image", $url_img);
 
             $redirect_uri = OW::getRouter()->urlForRoute('spodshowcase.datalet', array("datalet_id" => $datalet_id));
             $document->addMetaInfo("fb:app_id", $fb_app_id_pref, "property");
             $document->addMetaInfo("og:url", $redirect_uri, "property");
             $document->addMetaInfo("og:type", 'article', "property");
-            $document->addMetaInfo("og:title", isset($datalet_para->datalettitle) ? $datalet_para->datalettitle : 'No title', "property" );
-            $document->addMetaInfo("og:description", isset($datalet_para->description) ? $datalet_para->description : 'No description', "property");
+            //$document->addMetaInfo("og:title", isset($datalet_para->datalettitle) ? $datalet_para->datalettitle : 'No title', "property" );
+            $document->addMetaInfo("og:title", isset($datalet_para->datalettitle) ? $datalet_para->datalettitle :  $datalet->component, "property" );
+            //$document->addMetaInfo("og:description", isset($datalet_para->description) ? $datalet_para->description : 'No description', "property");
+            $document->addMetaInfo("og:description", isset($datalet_para->description) ? $datalet_para->description : 'A visualization from ' . $domain_parse['host'], "property");
             $document->addMetaInfo("og:image", $url_img, "property");
             $document->addMetaInfo("og:image:width", "948", "property" );
             $document->addMetaInfo("og:image:height", "490", "property" );
