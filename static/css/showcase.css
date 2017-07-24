@@ -596,10 +596,9 @@ input#agora_search_input:focus {
 {
     display: flex;
     flex-direction: row;
-
     color: #9E9E9E;
-
     height: 22px;
+    margin-bottom: 8px;
 }
 
 .agora_speech_info > *
@@ -970,7 +969,7 @@ div.agora_speech {
 div.agora_fullsize_datalet
 {
     width: calc( 75vw - 124px - 208px );/*100% la classe deve essere data al commento che contiene la datalet*/
-    height: 434px;
+    height: 400px;
     margin: 12px 0;
     overflow: hidden;
 
