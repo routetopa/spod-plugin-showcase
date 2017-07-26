@@ -16,9 +16,12 @@ class SPODSHOWCASE_CTRL_ShowDatalet extends OW_ActionController
 
             $document = OW::getDocument();
 
-            OW::getDocument()->addStyleSheet(OW::getPluginManager()->getPlugin('spodshowcase')->getStaticCssUrl() . 'showcase.css');
+            //OW::getDocument()->addStyleSheet(OW::getPluginManager()->getPlugin('spodshowcase')->getStaticCssUrl() . 'showcase.css');
             OW::getDocument()->addStyleSheet(OW::getPluginManager()->getPlugin('spodshowcase')->getStaticCssUrl() . 'showcase_page.css');
             //OW::getDocument()->addScript(OW::getPluginManager()->getPlugin('spodshowcase')->getStaticJsUrl() . 'skrollr.js');
+            OW::getDocument()->addScript('https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/TweenMax.min.js');
+            OW::getDocument()->addScript('https://cdnjs.cloudflare.com/ajax/libs/stats.js/r16/Stats.min.js');
+            OW::getDocument()->addScript(OW::getPluginManager()->getPlugin('spodshowcase')->getStaticJsUrl() . 'tt.js');
 
             $html_datalet = $this->create_datalet_code($datalet);
             $datalet_para = json_decode($datalet->params);
@@ -29,7 +32,7 @@ class SPODSHOWCASE_CTRL_ShowDatalet extends OW_ActionController
             $this->assign('datalet', $datalet);
             $this->assign('dataset', $datalet_para->{'data-url'});
             $this->assign('avatar', $avatars[$datalet->ownerId]);
-            $this->assign("staticResourcesUrl", OW::getPluginManager()->getPlugin('spodshowcase')->getStaticUrl());
+            //$this->assign("staticResourcesUrl", OW::getPluginManager()->getPlugin('spodshowcase')->getStaticUrl());
 
             // ADD DATALET DEFINITIONS
             $this->assign('datalet_definition_import', ODE_CLASS_Tools::getInstance()->get_all_datalet_definitions());

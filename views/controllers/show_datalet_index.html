@@ -100,7 +100,7 @@
 
 </script>
 
-<div class="site_tour"></div>
+<!--<div class="site_tour"></div>-->
 
 <div class="page_navigator">
     <div class="page_navigator_container">
@@ -111,41 +111,54 @@
 </div>
 
 <div class="page_one agora_left_comment">
-    <div class="header_bar"></div>
 
-    <div class="datalet_container">
-        <div class="ow_avatar style-scope neutral" title='{$avatar["title"]}'>
-            <a class="style-scope" href='{$avatar["url"]}'>
-                <img src='{$avatar["src"]}'>
-            </a>
-        </div>
-        <div class="agora_speech">
-            <div class="agora_speech_text" style="background: url({$ur_share_img}) no-repeat"></div>
-            <div id="" class="agora_fullsize_datalet scatterchart-datalet" datalet-id="">
-                {$html_datalet}
-            </div>
-            <div class="agora_speech_info">
-                <div class="agora_speech_username">{$avatar["title"]}</div>
-                <div class="agora_speech_time">{$datalet->timestamp}</div>
-            </div>
+    <svg id="demo" viewBox="0 0 1600 600" preserveAspectRatio="xMidYMid slice">
+        <defs>
+            <linearGradient id="grad1" x1="0" y1="0" x2="1" y2="0" color-interpolation="sRGB">
+                <stop id="stop1a" offset="0%" stop-color="#12a3b4"></stop>
+                <stop id="stop1b" offset="100%" stop-color="#ff509e"></stop>
+            </linearGradient>
+            <linearGradient id="grad2" x1="0" y1="0" x2="1" y2="0" color-interpolation="sRGB">
+                <stop id="stop2a" offset="0%" stop-color="#e3bc13"></stop>
+                <stop id="stop2b" offset="100%" stop-color="#00a78f"></stop>
+            </linearGradient>
+        </defs>
+        <rect id="rect1" x="0" y="0" width="1600" height="600" stroke="none" fill="url(#grad1)"></rect>
+        <rect id="rect2" x="0" y="0" width="1600" height="600" stroke="none" fill="url(#grad2)"></rect>
+    </svg>
+
+    <div id="" class="agora_fullsize_datalet" datalet-id="">
+        {$html_datalet}
+    </div>
+    
+    <div class="mobile_image">
+        <img src="{$ur_share_img}">
+    </div>
+
+    <div class="ow_avatar" title='{$avatar["title"]}'>
+        <a class="" href='{$avatar["url"]}'>
+            <img src='{$avatar["src"]}'>
+        </a>
+    </div>
+
+    <div class="datalet_info">
+
+        <div class="datalet_context">
             {if $context["context"] == "agora"}
-            <p class="context">
                 {text key="spodshowcase+datalet_from_agora_message"
-                    component={$datalet->component}
-                    user_url={$avatar["url"]}
-                    user_title={$avatar["title"]}
-                    context={$context["context"]}
-                    context_id={$context["id"]}
-                    context_subject={$context["subject"]}
-                    dataset={$dataset}
-                    context_views={$context["views"]}
-                    context_comments={$context["comments"]}
-                    context_opendata={$context["opendata"]}
+                component={$datalet->component}
+                user_url={$avatar["url"]}
+                user_title={$avatar["title"]}
+                context={$context["context"]}
+                context_id={$context["id"]}
+                context_subject={$context["subject"]}
+                dataset={$dataset}
+                context_views={$context["views"]}
+                context_comments={$context["comments"]}
+                context_opendata={$context["opendata"]}
                 }
-            </p>
             {/if}
             {if $context["context"] == "newsfeed"}
-            <p class="context">
                 {text key="spodshowcase+datalet_from_newsfeed_message"
                 component={$datalet->component}
                 user_url={$avatar["url"]}
@@ -153,20 +166,20 @@
                 context={$context["context"]}
                 dataset={$dataset}
                 }
-            </p>
             {/if}
-
-            <p class="project_info">
-                {text key="spodshowcase+project_info"}
-            </p>
-
-            <div class="project_grant" style="position: absolute; bottom: 16px;">
-                <img src="{$staticResourcesUrl}/images/EU-Flag.jpg" height="40" />
-                <div class="project_grant_text">{text key="spodshowcase+project_grant"}</div>
-            </div>
-
         </div>
+
+        <div class="project_info">
+            {text key="spodshowcase+project_info"}
+        </div>
+
     </div>
+
+    <div class="project_grant">
+        <div class="eu_flag"></div>
+        <div class="project_grant_text">{text key="spodshowcase+project_grant"}</div>
+    </div>
+
 </div>
 
 <div id="page_two">
