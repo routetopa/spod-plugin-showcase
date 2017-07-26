@@ -508,6 +508,9 @@ body {
         width: 100%;
         border-radius: 0;
         left: 0;
+        top: initial;
+        bottom: 0;
+        background-color: rgba(0,0,0,0.6);
     }
 
     .mobile_image
@@ -567,6 +570,8 @@ body {
         border-radius: 0;
         top: initial;
         bottom: 0;
+        left:0;
+        background-color: rgba(0,0,0,0.6);
     }
 
     .mobile_image
