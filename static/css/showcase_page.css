@@ -146,10 +146,16 @@ div.agora_speech_text
     height: 100%;
     width:100vw;
     position: relative;
-    background-color: #f2f0f1;
+    /*background-color: #f2f0f1;*/
     display: flex;
     justify-content: center;
     align-items: center;
+
+    /*background: #3494E6;  !* fallback for old browsers *!*/
+    /*background: -webkit-linear-gradient(to right, #EC6EAD, #3494E6);  !* Chrome 10-25, Safari 5.1-6 *!*/
+    /*background: linear-gradient(to right, #EC6EAD, #3494E6); !* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ *!*/
+
+    background-color: #FFFFFF;
 }
 
 #dx_view
@@ -174,12 +180,16 @@ div.agora_speech_text
 
 .comparator_image_container
 {
-    width: 973px;
-    height: 650px;
+    /*width: 50%;*/
+    width: 1000px;
     position: absolute;
     right: 0;
     left:0;
     margin: 0 auto;
+}
+
+.comparator_image_container img {
+    width: 100%;
 }
 
 #dragme
@@ -187,21 +197,35 @@ div.agora_speech_text
     position: absolute;
     width: 2px;
     height: 100%;
-    top: 0px;
-    background-color: #b0e4f3;
+    top: 0;
+    background-color: #FB8C00;
     cursor: pointer;
-    z-index: 3;
+    z-index: 103;
+}
+
+#dragme span
+{
+    width: 32px;
+    height: 32px;
+    background: url('../images/drag.svg') no-repeat center center;
+    background-size: 26px 26px;
+    background-color: #FF9800;
+    display: block;
+    position: absolute;
+    top: calc(50% - 16px);
+    left: -15px;
+    border-radius: 50%;
 }
 
 #dragme span:before
 {
     content: '';
     position: absolute;
-    left: -10px;
-    top: -10px;
-    width: 45px;
-    height: 45px;
-    border: 2px solid #eb5256;
+    left: -11px;
+    top: -11px;
+    width: 50px;
+    height: 50px;
+    border: 2px solid #FF9800;
     border-radius: 50%;
     transform: scale(0.6);
     transform-origin: center center;
@@ -211,10 +235,14 @@ div.agora_speech_text
     animation-iteration-count:infinite;
 }
 
-/*@keyframes loopwidth {
-    from   { transform: scale(0.6); }
-    to { transform: scale(1); }
-}*/
+#dragme span:hover
+{
+    background-color: #FB8C00;
+}
+
+#dragme span:hover:before{
+    border: 2px solid #FB8C00;
+}
 
 @keyframes loopwidth {
     0%   { transform: scale(0.6); }
@@ -224,23 +252,166 @@ div.agora_speech_text
     100% { transform: scale(0.6); }
 }
 
-/*@keyframes loopwidth {
-    from { width: 0; }
-    to  { width: 50px; }
-}*/
-
-
-#dragme span
-{
-    width: 30px;
-    height: 30px;
-    background: url('../images/drag-icon.png') no-repeat center center;
-    display: block;
+/**/
+.colored_circle, .bw_circle {
     position: absolute;
-    top: 50%;
-    left: -15px;
-    margin-top: -84px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    line-height: 32px;
+    color: white;
+    text-align: center;
+    font-weight: 700;
 }
+.colored_circle {
+    background-color: #00BCD4;
+}
+
+.bw_circle {
+    background-color: #BDBDBD;
+}
+
+.colored_circle:before, .bw_circle:before
+{
+    content: '';
+    position: absolute;
+    left: -11px;
+    top: -11px;
+    width: 50px;
+    height: 50px;
+    border: 2px solid #00BCD4;
+    border-radius: 50%;
+    transform: scale(0.6);
+    transform-origin: center center;
+    animation-name: loopwidth;
+    animation-duration: 1.5s;
+    animation-timing-function: ease-in;
+    animation-iteration-count:infinite;
+}
+
+.bw_circle:before {
+    border: 2px solid #BDBDBD;
+}
+
+.colored_circle.p1, .bw_circle.p1 {
+    top: 26px;
+    left: 166px;
+}
+.colored_circle.p2, .bw_circle.p2 {
+    top: 26px;
+    left: 802px;
+}
+.colored_circle.p3, .bw_circle.p3 {
+    top: -34px;
+    left: 484px;
+}
+.colored_circle.p4, .bw_circle.p4 {
+    top: 142px;
+    left: 30px;
+}
+.colored_circle.p5, .bw_circle.p5 {
+    top: 142px;
+    left: 938px;
+}
+/**/
+
+/**/
+
+.colored_floating_text, .bw_floating_text {
+    position: absolute;
+    font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 700;
+    width: 400px;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.colored_floating_text
+{
+    background-color: #E3F2FD;
+    color: #2196f3;
+}
+
+.bw_floating_text {
+    background-color: rgba(250, 250, 250, 0.4);
+    color: #BDBDBD;
+}
+
+.colored_floating_text.p1, .bw_floating_text.p1 {
+    top: 10%;
+    left: 10%;
+    background: transparent;
+    width: initial;
+    font-size: 32px;
+    line-height: 48px;
+}
+.colored_floating_text.p2, .bw_floating_text.p2 {
+    top: 10%;
+    left: 70%;
+}
+.colored_floating_text.p3, .bw_floating_text.p3 {
+    top: 80%;
+    left: 10%;
+}
+.colored_floating_text.p4, .bw_floating_text.p4 {
+    top: 80%;
+    left: 70%;
+}
+
+.colored_floating_text span.c1 {
+    color: #FF9800;
+}
+
+.colored_floating_text span.sp {
+    color: #00BCD4;
+    font-weight: 700;
+}
+
+/*.speech_balloon:before*/
+/*{*/
+    /*content: ' ';*/
+    /*position: absolute;*/
+    /*width: 0;*/
+    /*height: 0;*/
+    /*left: -16px;*/
+    /*top: 0;*/
+    /*border: 8px solid;*/
+    /*border-color: #BBDEFB #BBDEFB transparent transparent;*/
+/*}*/
+
+/*.speech_balloon*/
+/*{*/
+    /*background-color: #BBDEFB;*/
+    /*border-radius: 0 5px 5px 5px;*/
+    /*margin-left: 16px;*/
+    /*margin-top: 8px;*/
+    /*padding: 12px 16px;*/
+/*}*/
+
+/*.speech_balloon_reverse:before*/
+/*{*/
+    /*content: ' ';*/
+    /*position: absolute;*/
+    /*width: 0;*/
+    /*height: 0;*/
+    /*right: -16px;*/
+    /*top: 0;*/
+    /*border: 8px solid;*/
+    /*border-color: #BBDEFB  transparent transparent #BBDEFB;*/
+/*}*/
+
+/*.speech_balloon_reverse*/
+/*{*/
+    /*background-color: #BBDEFB;*/
+    /*border-radius: 5px 0 5px 5px;*/
+    /*margin-left: 16px;*/
+    /*margin-top: 8px;*/
+    /*padding: 12px 16px;*/
+/*}*/
+
+/**/
 
 #page_three
 {
@@ -305,58 +476,6 @@ div.agora_speech_text
 #div3 .leaflet-control-container
 {
     display: none;
-}
-
-.floating_text
-{
-    position: absolute;
-    font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 20px;
-    line-height: 24px;
-    font-weight: 900;
-    color: #2196f3;
-}
-
-.speech_balloon:before
-{
-    content: ' ';
-    position: absolute;
-    width: 0;
-    height: 0;
-    left: -16px;
-    top: 0;
-    border: 8px solid;
-    border-color: #BBDEFB #BBDEFB transparent transparent;
-}
-
-.speech_balloon
-{
-    background-color: #BBDEFB;
-    border-radius: 0 5px 5px 5px;
-    margin-left: 16px;
-    margin-top: 8px;
-    padding: 12px 16px;
-}
-
-.speech_balloon_reverse:before
-{
-    content: ' ';
-    position: absolute;
-    width: 0;
-    height: 0;
-    right: -16px;
-    top: 0;
-    border: 8px solid;
-    border-color: #BBDEFB  transparent transparent #BBDEFB;
-}
-
-.speech_balloon_reverse
-{
-    background-color: #BBDEFB;
-    border-radius: 5px 0 5px 5px;
-    margin-left: 16px;
-    margin-top: 8px;
-    padding: 12px 16px;
 }
 
 .ow_avatar img
