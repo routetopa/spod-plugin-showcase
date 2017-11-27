@@ -27,10 +27,12 @@ class SPODSHOWCASE_CTRL_ShowDatalet extends OW_ActionController
             $datalet_para = json_decode($datalet->params);
             $context = SPODSHOWCASE_BOL_Service::getInstance()->gat_datalet_context($datalet_id);
 
+            $url = $this->get_dataset_ckan_url($datalet_para->{'data-url'});
+
             $this->assign('html_datalet', $html_datalet);
             $this->assign('context', $context);
             $this->assign('datalet', $datalet);
-            $this->assign('dataset', $datalet_para->{'data-url'});
+            $this->assign('dataset', $url);
             $this->assign('avatar', $avatars[$datalet->ownerId]);
             //$this->assign("staticResourcesUrl", OW::getPluginManager()->getPlugin('spodshowcase')->getStaticUrl());
 
@@ -101,6 +103,31 @@ class SPODSHOWCASE_CTRL_ShowDatalet extends OW_ActionController
         $html .= " ></{$datalet->component}>";
 
         return $html;
+    }
+
+    private function get_dataset_ckan_url($url)
+    {
+        if(strpos($url, "datastore_search?resource_id"))
+        {
+            $exploded_url = explode("/", $url);
+            $exploded_url = $exploded_url[0] . "//" . $exploded_url[2];
+            $replaced_url = str_replace("datastore_search?resource_id", "resource_show?id", $url);
+
+            $ch = curl_init($replaced_url);
+            curl_setopt($ch, CURLOPT_HEADER, 0);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            $res = curl_exec($ch);
+            $retcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            curl_close($ch);
+            if (200 == $retcode) {
+                $data = json_decode($res, true);
+                $url  = $exploded_url . "/dataset/" . $data["result"]["package_id"] . "/resource/" . $data["result"]["id"];
+            }
+        }
+
+        return $url;
     }
 
     protected function htmlSpecialChar($string)
