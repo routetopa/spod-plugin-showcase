@@ -10,6 +10,12 @@ body
 
 /* OW_AVATAR */
 
+span
+{
+    color: #2196F3;
+    font-weight: 700;
+}
+
 .ow_avatar {
     position: absolute;
     top: 48px;
