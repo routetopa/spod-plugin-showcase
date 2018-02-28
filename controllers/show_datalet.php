@@ -32,6 +32,7 @@ class SPODSHOWCASE_CTRL_ShowDatalet extends OW_ActionController
             $this->assign('datalet', $datalet);
             $this->assign('dataset', $datalet_para->{'data-url'});
             $this->assign('avatar', $avatars[$datalet->ownerId]);
+            $this->assign('datalettitle', $datalet_para->datalettitle);
             //$this->assign("staticResourcesUrl", OW::getPluginManager()->getPlugin('spodshowcase')->getStaticUrl());
 
             // ADD DATALET DEFINITIONS

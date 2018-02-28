@@ -147,6 +147,7 @@
             {if $context["context"] == "agora"}
                 {text key="spodshowcase+datalet_from_agora_message"
                 component={$datalet->component}
+                datalet_title={$datalettitle}
                 user_url={$avatar["url"]}
                 user_title={$avatar["title"]}
                 context={$context["context"]}
@@ -161,6 +162,7 @@
             {if $context["context"] == "newsfeed"}
                 {text key="spodshowcase+datalet_from_newsfeed_message"
                 component={$datalet->component}
+                datalet_title={$datalettitle}
                 user_url={$avatar["url"]}
                 user_title={$avatar["title"]}
                 context={$context["context"]}
