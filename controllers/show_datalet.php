@@ -87,6 +87,7 @@ class SPODSHOWCASE_CTRL_ShowDatalet extends OW_ActionController
         if(!empty($datalet))
         {
             $html_datalet = $this->create_datalet_code($datalet);
+            $html_datalet = "<style>html,body{margin:0;padding:0;height: 100%} {$datalet->component}{--base-datalet-visibility: true; --datalet-container-size:100%}</style>" . $html_datalet;
             $this->assign('html_datalet', $html_datalet);
         }
     }
